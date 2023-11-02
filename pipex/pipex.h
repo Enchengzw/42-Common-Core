@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:15:34 by ezhou             #+#    #+#             */
-/*   Updated: 2023/10/30 15:43:45 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/02 18:10:42 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,17 @@ typedef struct s_pipex
 {
 	int		in_fd;
 	int		out_fd;
-	int		here_doc;
-	int		is_invalid_infile;
+	//int		here_doc;
 	char	**cmd_paths;
 	char	***cmd_args;
 }			t_pipex;
 
 t_pipex	*ft_init_pipex(void);
 char	**ft_find_path(char **env);
-char	*ft_cmd_path(char *cmd, char **path);
+char	***ft_group_cmd(char **argv, int argc);
+t_pipex	*ft_process_args(char **argv, int argc, t_pipex *pipe, char **paths);
+void	*ft_full_clear(t_pipex *pipe);
+void	*ft_free(char **array);
+char	**ft_all_cmd_paths(char ***cmds, char **paths, int argc);
 
 #endif

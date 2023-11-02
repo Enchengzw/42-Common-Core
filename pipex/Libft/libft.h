@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 12:03:30 by ezhou             #+#    #+#             */
-/*   Updated: 2023/10/18 18:50:33 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/10/31 11:54:20 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -446,4 +446,13 @@ char				*ft_clean(char *pointer);
  * NULL if there are no more lines to read
  */
 char				*get_next_line(int fd);
+/**
+ * @brief Function that prints on screen a string with variables, such as a
+ * digit, string, number or hexadecimal numbers.
+ *
+ * @param str String with the words
+ * @param ... Variadic arguments
+ * @return Number of bytes printed
+ */
+int					ft_printf(char const *str, ...);
 #endif

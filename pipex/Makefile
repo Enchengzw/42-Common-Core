@@ -6,7 +6,7 @@
 #    By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 16:53:06 by ezhou             #+#    #+#              #
-#    Updated: 2023/10/30 15:43:53 by ezhou            ###   ########.fr        #
+#    Updated: 2023/11/02 17:07:34 by ezhou            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,10 @@ COLOUR_END=\033[0m
 LIBFT = libft.a
 RM = rm -f
 
-CC = gcc -Wall -Wextra -Werror
+CC = gcc -g -Wall -Wextra -Werror
 
 NAME = pipex
-SRC = pipex.c ft_find_path.c ft_cmd_path.c
+SRC = pipex.c ft_find_path.c ft_process_args.c ft_full_clear.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
