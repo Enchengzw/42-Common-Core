@@ -13,21 +13,6 @@
 #include "libft.h"
 #include "pipex.h"
 
-static void	*ft_free_triple(char ***pointer)
-{
-	while (*pointer)
-	{
-		while (**pointer)
-		{
-			free(**pointer);
-			(*pointer)++;
-		}
-		free(*pointer);
-		pointer++;
-	}
-	return (0);
-}
-
 char	*ft_cmd_path(char *cmd, char **path)
 {
 	char	*r_path;
@@ -57,43 +42,45 @@ char	*ft_cmd_path(char *cmd, char **path)
 	return (0);
 }
 
-char	***ft_group_cmd(char **argv, int argc)
+void	ft_group_cmd(char **argv, int argc, t_pipex *pipe)
 {
 	int		i;
 	int		j;
-	char	***result;
 
 	j = 0;
 	i = 2;
-	result = (char ***)malloc(sizeof(char **) * (argc - 2));
-	if (!result)
-		return (NULL);
+	pipe->cmd_args = (char ***)malloc(sizeof(char **) * (argc - 2));
+	if (!(pipe->cmd_args))
+		return ;
 	while (i < argc - 1)
 	{
-		result[j] = ft_split(argv[i], ' ');
-		if (!result[j])
-			return (ft_free_triple(result));
+		(pipe->cmd_args)[j] = ft_split(argv[i], ' ');
+		if (!(pipe->cmd_args)[j])
+		{
+			ft_full_clear(pipe);
+			return ;
+		}
 		j++;
 		i++;
 	}
-	return (result);
 }
 
-char	**ft_all_cmd_paths(char ***cmds, char **paths, int argc)
+void	ft_all_cmd_paths(char **paths, int argc, t_pipex *pipe)
 {
-	char	**full_paths;
 	int		i;
 
 	i = 0;
-	full_paths = (char **)malloc(sizeof(char *) * (argc - 2));
-	while (cmds[i][0] && i < argc - 1)
+	pipe->cmd_paths = (char **)malloc(sizeof(char *) * (argc - 2));
+	while ((pipe->cmd_args)[i][0] && i < argc - 1)
 	{
-		full_paths[i] = ft_cmd_path(cmds[i][0], paths);
-		if (!full_paths[i])
-			return (ft_free(full_paths));
+		(pipe->cmd_paths)[i] = ft_cmd_path((pipe->cmd_args)[i][0], paths);
+		if (!(pipe->cmd_paths)[i])
+		{
+			ft_full_clear(pipe);
+			return ;
+		}
 		i++;
 	}
-	return (full_paths);
 }
 
 t_pipex	*ft_process_args(char **argv, int argc, t_pipex *pipe, char **paths)
@@ -105,8 +92,8 @@ t_pipex	*ft_process_args(char **argv, int argc, t_pipex *pipe, char **paths)
 		ft_printf("%s\n", argv[1]);
 		return (NULL);
 	}
-	pipe->cmd_args = ft_group_cmd(argv, argc);
-	pipe->cmd_paths = ft_all_cmd_paths(pipe->cmd_args, paths, argc);
+	ft_group_cmd(argv, argc, pipe);
+	ft_all_cmd_paths(paths, argc, pipe);
 	pipe->out_fd = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	return (pipe);
 }

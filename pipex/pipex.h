@@ -32,10 +32,10 @@ typedef struct s_pipex
 
 t_pipex	*ft_init_pipex(void);
 char	**ft_find_path(char **env);
-char	***ft_group_cmd(char **argv, int argc);
+void	ft_group_cmd(char **argv, int argc, t_pipex *pipe);
 t_pipex	*ft_process_args(char **argv, int argc, t_pipex *pipe, char **paths);
 void	*ft_full_clear(t_pipex *pipe);
 void	*ft_free(char **array);
-char	**ft_all_cmd_paths(char ***cmds, char **paths, int argc);
+void	ft_all_cmd_paths(char **paths, int argc, t_pipex *pipe);
 
 #endif
