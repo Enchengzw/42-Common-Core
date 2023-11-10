@@ -22,6 +22,7 @@ t_pipex	*ft_init_pipex(void)
 	pipe->out_fd = 0;
 	//pipe->here_doc = 0;
 	pipe->cmd_paths = NULL;
+	pipe->paths = NULL;
 	pipe->cmd_args = NULL;
 	return (pipe);
 }
@@ -34,14 +35,15 @@ void	leaks()
 int	main(int argc, char **argv, char **env)
 {
 	t_pipex	*pipe;
-	char	**paths;
+	pid_t	pid;
+	int		i;
+	int		pipe[2];
 
+	i = 0;
 	atexit(leaks);
 	pipe = ft_init_pipex();
-	paths = ft_find_path(env);
-	if (!paths)
-		return (0);
-	pipe = ft_process_args(argv, argc, pipe, paths);
+	pipe = ft_process_args(argv, argc, pipe, env);
+	ft_execute(env, pipe);
 	ft_full_clear(pipe);
 	return (0);
 }

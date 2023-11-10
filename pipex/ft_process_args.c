@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 16:15:22 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/02 18:15:32 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/07 17:08:29 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_all_cmd_paths(char **paths, int argc, t_pipex *pipe)
 
 	i = 0;
 	pipe->cmd_paths = (char **)malloc(sizeof(char *) * (argc - 2));
-	while ((pipe->cmd_args)[i][0] && i < argc - 1)
+	while (i < argc - 1 && (pipe->cmd_args)[i])
 	{
 		(pipe->cmd_paths)[i] = ft_cmd_path((pipe->cmd_args)[i][0], paths);
 		if (!(pipe->cmd_paths)[i])
@@ -83,17 +83,20 @@ void	ft_all_cmd_paths(char **paths, int argc, t_pipex *pipe)
 	}
 }
 
-t_pipex	*ft_process_args(char **argv, int argc, t_pipex *pipe, char **paths)
+t_pipex	*ft_process_args(char **argv, int argc, t_pipex *pipe, char **env)
 {
+	pipe->paths = ft_find_path(env);
+	if (!(pipe->paths))
+		return (0);
 	pipe->in_fd = open(argv[1], O_RDONLY);
 	if ((pipe->in_fd) == -1)
 	{
-		perror("no such file or directory: ");
+		perror("1");
 		ft_printf("%s\n", argv[1]);
 		return (NULL);
 	}
 	ft_group_cmd(argv, argc, pipe);
-	ft_all_cmd_paths(paths, argc, pipe);
+	ft_all_cmd_paths(pipe->paths, argc, pipe);
 	pipe->out_fd = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	return (pipe);
 }

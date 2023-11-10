@@ -1,0 +1,45 @@
+
+/*	Arguments check
+	char ***test;
+	int 	i;
+	int		j;
+
+	j = 0;
+	i = 0;
+	test = pipe->cmd_args;
+	while(test[i])
+	{
+		j = 0;
+		while(test[i][j])
+		{	
+			printf("%s\n", test[i][j]);
+			j++;
+		}
+		i++;
+	}
+
+	PATHS check
+	char **path;
+	int i;
+
+	i = 0;
+	path = pipe->paths;
+	while(path[i])
+	{
+		printf("%s\n", path[i]);
+		i++;
+	}
+
+	Completed PATHS check
+	char **path;
+	int i;
+
+	i = 0;
+	path = pipe->cmd_paths;
+	while(path[i])
+	{
+		printf("%s\n", path[i]);
+		i++;
+	}
+	return (0);
+*/

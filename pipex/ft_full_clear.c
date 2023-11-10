@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:00:18 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/02 17:36:36 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/08 17:36:27 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,23 @@ void	*ft_free(char **array)
 
 void	*ft_full_clear(t_pipex *pipe)
 {
+	int	i;
+
+	i = -1;
 	if (pipe->cmd_paths)
 		ft_free(pipe->cmd_paths);
 	if (pipe->cmd_args)
 	{
-		while (*(pipe->cmd_args))
-		{
-			ft_free(*(pipe->cmd_args));
-			(pipe->cmd_args)++;
-		}
+		while ((pipe->cmd_args)[++i])
+			ft_free((pipe->cmd_args)[i]);
+		free(pipe->cmd_args);
 	}
+	if (pipe->paths)
+		ft_free(pipe->paths);
+	if (pipe->in_fd > 0)
+		close(pipe->in_fd);
+	if (pipe->out_fd > 0)
+		close(pipe->in_fd);
 	free(pipe);
 	return (0);
 }
