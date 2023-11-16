@@ -37,13 +37,13 @@ int	main(int argc, char **argv, char **env)
 	t_pipex	*pipe;
 	pid_t	pid;
 	int		i;
-	int		pipe[2];
+	int		fd[2];
 
 	i = 0;
 	atexit(leaks);
 	pipe = ft_init_pipex();
 	pipe = ft_process_args(argv, argc, pipe, env);
-	ft_execute(env, pipe);
+	ft_execute(env, pipe, argc);
 	ft_full_clear(pipe);
 	return (0);
 }

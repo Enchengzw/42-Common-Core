@@ -6,12 +6,25 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 16:15:22 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/07 17:08:29 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/15 15:23:34 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "pipex.h"
+
+void	ft_change_quotes(char *string)
+{
+	int	i;
+
+	i = 0;
+	while (string[i])
+	{
+		if (string[i] == '"')
+			string[i] = '\"';
+		i++;
+	}
+}
 
 char	*ft_cmd_path(char *cmd, char **path)
 {
@@ -46,6 +59,7 @@ void	ft_group_cmd(char **argv, int argc, t_pipex *pipe)
 {
 	int		i;
 	int		j;
+	char	*string;
 
 	j = 0;
 	i = 2;
@@ -54,7 +68,8 @@ void	ft_group_cmd(char **argv, int argc, t_pipex *pipe)
 		return ;
 	while (i < argc - 1)
 	{
-		(pipe->cmd_args)[j] = ft_split(argv[i], ' ');
+		string = argv[i];
+		(pipe->cmd_args)[j] = ft_split(string, ' ');
 		if (!(pipe->cmd_args)[j])
 		{
 			ft_full_clear(pipe);
