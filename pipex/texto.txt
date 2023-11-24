@@ -1,4 +1,0 @@
-afristName       lastName        age     city       ID
-
-Wood            Tinker          54      Lisbon     N/A
-Timmy           Turner          32      Berlin     N/A
