@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 12:03:30 by ezhou             #+#    #+#             */
-/*   Updated: 2023/10/31 11:54:20 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/22 12:43:55 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,7 +319,8 @@ void				ft_putnbr_fd(int n, int fd);
 size_t				ft_strlcpy(char *dst, const char *src, size_t size);
 /**
 
- * @brief Initializes a pointer with count elements of size bytes and initializes
+
+	* @brief Initializes a pointer with count elements of size bytes and initializes
  * all elements to zero
  *
  * @param count Number of elements
@@ -373,7 +374,7 @@ void				ft_lstadd_back(t_list **lst, t_list *new);
  */
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 /**
- * @brief Deletes and frees the entire list by using an 
+ * @brief Deletes and frees the entire list by using an
  * auxiliary function del
  *
  * @param lst The list
@@ -384,25 +385,25 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 /**
  * @brief Goes through the whole list and applies the function f to
 the content of each node
- * 
- * @param lst The list 
+ *
+ * @param lst The list
  * @param f Pointer to a function f
  */
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 /**
  * @brief Goes through the whole list and applies the function f to
  * the content of each node and generates a new list with them
- * 
+ *
  * @param lst The list
  * @param f Pointer to the function f to apply to the contents
  * @param del Pointer to the function del to free and delete nodes
- * @return t_list* 
+ * @return t_list*
  */
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
-					void (*del)(void *));
+						void (*del)(void *));
 /**
  * @brief Prints the number lnbr in the specified base
- * 
+ *
  * @param lnbr Numeric value of a number
  * @param base Base in which you would like to print the number
  * @return The number of bytes printed
@@ -410,39 +411,39 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 int					ft_putnbr_base(long lnbr, char *base);
 /**
  * @brief Prints the character c in stdout
- * 
+ *
  * @param c A character
- * @return The number of bytes printed 
+ * @return The number of bytes printed
  */
 int					ft_putchar(char c);
 /**
  * @brief Prints string s in stdoutput
- * 
+ *
  * @param s The string
  * @return The number of bytes printed
  */
 int					ft_putstr(char *s);
 /**
  * @brief  Returns 1 if c is included in s
- * 
+ *
  * @param s The string
  * @param c The character to search for
- * @return 1 if found, 0 otherwise 
+ * @return 1 if found, 0 otherwise
  */
 int					ft_strcontains(char *s, int c);
 /**
  * @brief Frees a pointers and sets it to NULL
- * 
+ *
  * @param pointer Pointer to free and reset
- * @return NULL in all cases 
+ * @return NULL in all cases
  */
 char				*ft_clean(char *pointer);
 /**
  * @brief Prints the next line in the given fd
- * 
- * 
+ *
+ *
  * @param fd File descriptor from where to read
- * @return The next line in the fd, 
+ * @return The next line in the fd,
  * NULL if there are no more lines to read
  */
 char				*get_next_line(int fd);
@@ -455,4 +456,28 @@ char				*get_next_line(int fd);
  * @return Number of bytes printed
  */
 int					ft_printf(char const *str, ...);
+/**
+ * @brief Prints in standard output all lines contained in fd
+ *
+ * @param fd
+ */
+void				print_all_lines(int fd);
+/**
+ * @brief Functions that finds the first ocurrence of character c in string s
+ * and returns its index
+ *
+ * @param s A string
+ * @param c A character's value in ASCII
+ * @return Its index or 0 if not found
+ */
+int					ft_strchrindex(char *s, int c);
+/**
+ * @brief Functions that finds the last ocurrence of character c in string s
+ * and returns its index
+ *
+ * @param s A string
+ * @param c A character's value in ASCII
+ * @return Its index or 0 if not found
+ */
+int					ft_strrchrindex(const char *s, int c);
 #endif

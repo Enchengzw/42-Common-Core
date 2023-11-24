@@ -20,30 +20,36 @@ t_pipex	*ft_init_pipex(void)
 	pipe = (t_pipex *)malloc(sizeof(t_pipex));
 	pipe->in_fd = 0;
 	pipe->out_fd = 0;
-	//pipe->here_doc = 0;
+	pipe->here_doc = 0;
 	pipe->cmd_paths = NULL;
 	pipe->paths = NULL;
 	pipe->cmd_args = NULL;
 	return (pipe);
 }
 
-void	leaks()
+/*void	leaks()
 {
 	system("leaks pipex");
-}
+}*/
 
 int	main(int argc, char **argv, char **env)
 {
 	t_pipex	*pipe;
-	pid_t	pid;
-	int		i;
-	int		fd[2];
+	int		e_flag;
 
-	i = 0;
-	atexit(leaks);
+	e_flag = 0;
+	//atexit(leaks);
 	pipe = ft_init_pipex();
-	pipe = ft_process_args(argv, argc, pipe, env);
-	ft_execute(env, pipe, argc);
-	ft_full_clear(pipe);
+	if (argv[1] == "here_doc")
+	{
+		pipe->here_doc = 1;
+		pipe = ft_process_args_hd(argv, argc, pipe, env);
+	}
+	else
+		pipe = ft_process_args(argv, argc, pipe, env);
+	if (pipe)
+		e_flag = ft_execute(env, pipe, argc);
+	if (!e_flag && pipe)
+		ft_full_clear(pipe);
 	return (0);
 }

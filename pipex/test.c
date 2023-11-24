@@ -21,17 +21,17 @@ int	main(int argc, char **argv)
 	dup2(fd2, STDOUT_FILENO);
 	close(fd2);*/
 	printf("%s\n", argv[1]);
-	char *awk_args[] = { "awk", "{printf (\"%d\", 42)}", "texto.txt", NULL };
+	char *awk_args[] = { "awk", "{printf(\"%s\", \"Hola\")}" , "texto.txt", NULL };
 	//char *awk_args[] = { "awk", argv[1], "texto.txt", NULL };
 	// Specify the path to the awk executable
-	char *awk_path = "/usr/bin/awk";
+	//char *awk_path = "/usr/bin/awk";
 
 	// Execute the awk command using execve
-	if (execve(awk_path, awk_args, NULL) == -1)
+	/*if (execve(awk_path, awk_args, NULL) == -1)
 	{
 		perror("execve");
 		return (1);
-	}
+	}*/
 
 	// This code will not be reached if execve is successful
 	return (0);

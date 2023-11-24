@@ -6,7 +6,7 @@
 #    By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 16:53:06 by ezhou             #+#    #+#              #
-#    Updated: 2023/11/02 17:09:03 by ezhou            ###   ########.fr        #
+#    Updated: 2023/11/20 17:33:32 by ezhou            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ ft_printf.c get_next_line.c ft_strjoin_alt.c ft_strcontains.c ft_lstnew_bonus.c 
 ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
 ft_lstadd_back_bonus.c ft_lstlast_bonus.c ft_lstdelone_bonus.c \
 ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c ft_putnbr_base.c \
-ft_clean.c
+ft_clean.c print_all_lines.c ft_strchrindex.c ft_strrchrindex.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
