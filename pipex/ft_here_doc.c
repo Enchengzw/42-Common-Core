@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:40:10 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/25 18:13:35 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/25 19:27:22 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void	ft_here_doc(int fd, char **argv)
 		ft_clean(input);
 	}
 	free(input);
+	free(string);
 }
