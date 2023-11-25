@@ -38,7 +38,7 @@ int	main(int argc, char **argv, char **env)
 	int		e_flag;
 
 	e_flag = 0;
-	//atexit(leaks);
+	atexit(leaks);
 	pipe = ft_init_pipex();
 	if (ft_strncmp(argv[1], "here_doc", ft_strlen("here_doc")) == 0)
 	{

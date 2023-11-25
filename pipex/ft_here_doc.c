@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:40:10 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/25 15:05:59 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/25 18:13:35 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_here_doc(int fd, char **argv)
 	while (1)
 	{
 		ft_printf("pipe heredoc> ");
-		input = get_next_line(1);
+		input = get_next_line(0);
 		if (ft_strncmp(string, input, ft_strlen(input)) == 0)
 			break ;
 		write(fd, input, ft_strlen(input));

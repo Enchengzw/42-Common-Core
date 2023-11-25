@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:15:34 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/25 14:40:24 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/25 17:40:50 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,18 @@ typedef struct s_pipex
 	char	***cmd_args;
 }			t_pipex;
 
+/**
+ * @brief Initializes pipex values to 0 or NULL
+ * 
+ * @return t_pipex* Initialized
+ */
 t_pipex	*ft_init_pipex(void);
+/**
+ * @brief Finds PATH directories and splits it into a double pointer
+ * 
+ * @param env Environmental variables
+ * @return char** All path directories listed
+ */
 char	**ft_find_path(char **env);
 void	ft_group_cmd(char **argv, int argc, t_pipex *pipe, int i);
 t_pipex	*ft_process_args(char **argv, int argc, t_pipex *pipe, char **env);
