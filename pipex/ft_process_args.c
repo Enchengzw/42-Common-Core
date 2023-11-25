@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 16:15:22 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/23 12:44:41 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/25 17:22:24 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,12 @@ char	*ft_cmd_path(char *cmd, char **path)
 	return (0);
 }
 
-void	ft_group_cmd(char **argv, int argc, t_pipex *pipe)
+void	ft_group_cmd(char **argv, int argc, t_pipex *pipe, int i)
 {
-	int		i;
 	int		j;
 	char	*string;
 
 	j = 0;
-	i = 2;
 	pipe->cmd_args = (char ***)malloc(sizeof(char **) * (argc - 2));
 	if (!(pipe->cmd_args))
 		return ;
@@ -69,6 +67,7 @@ void	ft_group_cmd(char **argv, int argc, t_pipex *pipe)
 		j++;
 		i++;
 	}
+	(pipe->cmd_args)[j] = NULL;
 }
 
 void	ft_all_cmd_paths(char **paths, int argc, t_pipex *pipe)
@@ -105,7 +104,7 @@ t_pipex	*ft_process_args(char **argv, int argc, t_pipex *pipe, char **env)
 		ft_putstr_fd("Error opening the infile", 2);
 		return (NULL);
 	}
-	ft_group_cmd(argv, argc, pipe);
+	ft_group_cmd(argv, argc, pipe, 2);
 	ft_all_cmd_paths(pipe->paths, argc, pipe);
 	pipe->out_fd = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	return (pipe);
@@ -113,7 +112,7 @@ t_pipex	*ft_process_args(char **argv, int argc, t_pipex *pipe, char **env)
 
 t_pipex	*ft_process_args_hd(char **argv, int argc, t_pipex *pipe, char **env)
 {
-	if (argc < 5)
+	if (argc < 5 || (pipe->here_doc && argc < 6))
 	{
 		ft_putstr_fd("Input arguments error\n", 2);
 		return (NULL);
@@ -121,14 +120,14 @@ t_pipex	*ft_process_args_hd(char **argv, int argc, t_pipex *pipe, char **env)
 	pipe->paths = ft_find_path(env);
 	if (!(pipe->paths))
 		return (0);
-	pipe->in_fd = open(argv[1], O_RDONLY | O_WRONLY | O_CREAT);
+	pipe->in_fd = open(argv[1], O_RDONLY | O_WRONLY | O_CREAT, 0666);
 	if ((pipe->in_fd) == -1)
 	{
 		ft_putstr_fd("Error opening the file", 2);
 		return (NULL);
 	}
 	ft_here_doc(pipe->in_fd, argv);
-	ft_group_cmd(argv, argc, pipe);
+	ft_group_cmd(argv, argc, pipe, 3);
 	ft_all_cmd_paths(pipe->paths, argc, pipe);
 	pipe->out_fd = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0666);
 	return (pipe);

@@ -85,7 +85,6 @@ int	ft_child_end(t_pipex *pipex, int i, char **env)
 	else if (pid > 0)
 	{
 		waitpid(pid, NULL, 0);
-		return (EXIT_FAILURE);
 	}
 	else
 		return (EXIT_FAILURE);
@@ -109,7 +108,7 @@ int	ft_execute(char **env, t_pipex *pipex, int argc)
 		}
 		if (i == 0)
 			flag = ft_child_start(pipex, i, env, fd);
-		else if (i == (argc - 2 - 1 - 1))
+		else if (!((pipex->cmd_args)[i + 1]))
 			flag = ft_child_end(pipex, i, env);
 		else
 			flag = ft_child(pipex, i, env, fd);

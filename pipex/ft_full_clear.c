@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:00:18 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/20 14:10:21 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/25 14:45:00 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	*ft_full_clear(t_pipex *pipe)
 			close(pipe->in_fd);
 		if (pipe->out_fd > 0)
 			close(pipe->in_fd);
+		if (pipe->here_doc)
+			unlink("here_doc");
 		free(pipe);
 	}
 	return (0);

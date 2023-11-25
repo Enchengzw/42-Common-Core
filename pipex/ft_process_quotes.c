@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:18:49 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/21 16:45:20 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/25 14:36:55 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	ft_strchrindex(char *s, int c)
 	return (0);
 }
 
-
 int	ft_strrchrindex(const char *s, int c)
 {
 	size_t	index;
@@ -66,7 +65,6 @@ int	ft_strrchrindex(const char *s, int c)
 	else
 		return (0);
 }
-
 
 char	*ft_process_quotes(char *string, char quote)
 {

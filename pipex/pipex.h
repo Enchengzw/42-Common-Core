@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:15:34 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/24 13:38:56 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/25 14:40:24 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_pipex
 
 t_pipex	*ft_init_pipex(void);
 char	**ft_find_path(char **env);
-void	ft_group_cmd(char **argv, int argc, t_pipex *pipe);
+void	ft_group_cmd(char **argv, int argc, t_pipex *pipe, int i);
 t_pipex	*ft_process_args(char **argv, int argc, t_pipex *pipe, char **env);
 void	*ft_full_clear(t_pipex *pipe);
 void	*ft_free(char **array);
@@ -46,6 +46,5 @@ char	*ft_process_quotes(char *string, char quote);
 char	**ft_split_awk(char const *s, char c);
 void	ft_here_doc(int fd, char **argv);
 t_pipex	*ft_process_args_hd(char **argv, int argc, t_pipex *pipe, char **env);
-
 
 #endif
