@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:33:42 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/27 16:33:45 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/27 17:36:23 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,17 @@ t_pipex	*ft_init_pipex(void)
 	return (pipe);
 }
 
+void leak()
+{
+	system("leaks pipex");
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_pipex	*pipe;
 	int		e_flag;
 
+	atexit(leak);
 	e_flag = 0;
 	pipe = ft_init_pipex();
 	if (ft_strncmp(argv[1], "here_doc", ft_strlen("here_doc")) == 0)

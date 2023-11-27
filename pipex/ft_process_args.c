@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 16:15:22 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/27 16:27:49 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/27 17:37:54 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_group_cmd(char **argv, int argc, t_pipex *pipe, int i)
 
 int	ft_all_cmd_paths(char **paths, int argc, t_pipex *pipe)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	pipe->cmd_paths = (char **)malloc(sizeof(char *) * (argc - 2));
@@ -108,7 +108,7 @@ t_pipex	*ft_process_args(char **argv, int argc, t_pipex *pipe, char **env)
 	if ((pipe->in_fd) == -1)
 	{
 		ft_putstr_fd("Error opening the infile", 2);
-		return (NULL);
+		return (ft_full_clear(pipe));
 	}
 	flag = ft_group_cmd(argv, argc, pipe, 2);
 	if (flag)
@@ -135,7 +135,7 @@ t_pipex	*ft_process_args_hd(char **argv, int argc, t_pipex *pipe, char **env)
 		return (0);
 	pipe->in_fd = open(argv[1], O_RDONLY | O_WRONLY | O_CREAT, 0666);
 	if ((pipe->in_fd) == -1)
-		return (ft_putstr_fd("Error opening the file", 2), NULL);
+		return (ft_putstr_fd("Error opening the file", 2), ft_full_clear(pipe));
 	flag = ft_here_doc(pipe->in_fd, argv);
 	if (flag)
 		return (0);
