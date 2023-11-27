@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 12:03:30 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/20 17:35:17 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/27 16:32:07 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -400,7 +400,7 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
  * @return t_list*
  */
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
-					void (*del)(void *));
+						void (*del)(void *));
 /**
  * @brief Prints the number lnbr in the specified base
  *

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/25 14:44:22 by ezhou             #+#    #+#             */
-/*   Updated: 2023/10/30 11:08:23by ezhou            ###   ########.fr       */
+/*   Created: 2023/11/27 16:33:42 by ezhou             #+#    #+#             */
+/*   Updated: 2023/11/27 16:33:45 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,12 @@ t_pipex	*ft_init_pipex(void)
 	return (pipe);
 }
 
-void	leaks()
-{
-	system("leaks pipex");
-}
-
 int	main(int argc, char **argv, char **env)
 {
 	t_pipex	*pipe;
 	int		e_flag;
 
 	e_flag = 0;
-	atexit(leaks);
 	pipe = ft_init_pipex();
 	if (ft_strncmp(argv[1], "here_doc", ft_strlen("here_doc")) == 0)
 	{
