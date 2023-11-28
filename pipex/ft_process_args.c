@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 16:15:22 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/27 17:37:54 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/28 12:03:47 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,10 +133,10 @@ t_pipex	*ft_process_args_hd(char **argv, int argc, t_pipex *pipe, char **env)
 	pipe->paths = ft_find_path(env);
 	if (!(pipe->paths))
 		return (0);
-	pipe->in_fd = open(argv[1], O_RDONLY | O_WRONLY | O_CREAT, 0666);
+	pipe->in_fd = open(argv[1], O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if ((pipe->in_fd) == -1)
 		return (ft_putstr_fd("Error opening the file", 2), ft_full_clear(pipe));
-	flag = ft_here_doc(pipe->in_fd, argv);
+	flag = ft_here_doc(pipe, argv);
 	if (flag)
 		return (0);
 	flag = ft_group_cmd(argv, argc, pipe, 3);

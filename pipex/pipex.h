@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:15:34 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/27 16:28:13 by ezhou            ###   ########.fr       */
+/*   Updated: 2023/11/28 12:03:42 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		ft_child(t_pipex *pipex, int i, char **env, int fd[2]);
 int		ft_child_end(t_pipex *pipex, int i, char **env);
 char	*ft_process_quotes(char *string, char quote, int *flag);
 char	**ft_split_awk(char const *s, char c);
-int		ft_here_doc(int fd, char **argv);
+int		ft_here_doc(t_pipex *pipex, char **argv);
 t_pipex	*ft_process_args_hd(char **argv, int argc, t_pipex *pipe, char **env);
 
 #endif
