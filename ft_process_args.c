@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 16:15:22 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/28 12:03:47 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/28 17:49:49 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,6 @@ int	ft_group_cmd(char **argv, int argc, t_pipex *pipe, int i)
 	while (i < argc - 1)
 	{
 		string = argv[i];
-		if (ft_strcontains(string, '\''))
-			string = ft_process_quotes(string, '\'', &flag);
-		if (ft_strcontains(string, '\"'))
-			string = ft_process_quotes(string, '\"', &flag);
 		(pipe->cmd_args)[j++] = ft_split_awk(string, ' ');
 		if (flag)
 			free(string);

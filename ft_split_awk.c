@@ -6,7 +6,7 @@
 /*   By: ezhou <ezhou@student.42malaga.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:31:36 by ezhou             #+#    #+#             */
-/*   Updated: 2023/11/27 16:31:38 by ezhou            ###   ########.fr       */
+/*   Updated: 2024/02/28 18:07:41 by ezhou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,23 @@ char static	*ft_new_word(char const *s, char c, char *array_cell, int *index)
 	int	one;
 	int	two;
 
-	one = ft_strchrindex((char *)s, '{');
+	one = ft_strchrindex((char *)s, '\'');
 	two = ft_strchrindex((char *)s, ' ');
-	if (ft_strcontains((char *)s, '{') && one < two)
-		length = ft_strrchrindex((char *)s, '}') + 1;
+	if (ft_strcontains((char *)s, '\'') && one < two)
+	{
+		length = ft_strrchrindex((char *)s, '\'') + 1;
+		array_cell = ft_strtrim(s, "\'");
+		if (!array_cell)
+			return (NULL);
+	}
 	else
+	{
 		length = ft_strlen_char(s, c);
-	array_cell = (char *)malloc(sizeof(char) * (length + 1));
-	if (!array_cell)
-		return (NULL);
-	ft_strlcpy(array_cell, s, length + 1);
+		array_cell = (char *)malloc(sizeof(char) * (length + 1));
+		if (!array_cell)
+			return (NULL);
+		ft_strlcpy(array_cell, s, length + 1);
+	}
 	*index += length - 1;
 	return (array_cell);
 }
